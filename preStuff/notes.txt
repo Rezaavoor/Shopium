@@ -19,3 +19,12 @@ Shpock:
 	description
 
 OBS: Shopock gets the images from an external source, the media.id is given and the image is returned(ex: https://webimg.secondhandapp.com/w-i-mgl/5f9d6c171564cd3fa7b2f900)
+
+
+Colors:
+  Shopock: #15A957
+  Tradera: #FFCF3C
+  Blocket: #F04C5A
+
+Idea: 
+  make items in different cards, each card has specific color based on its origin website
