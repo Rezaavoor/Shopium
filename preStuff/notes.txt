@@ -1,0 +1,21 @@
+The shared information between items in all 3 websites:
+
+Tradera:
+	itemUrl
+	imageUrl
+	price
+	shortDescription
+
+Blocket:
+	share_url
+	images[0].url
+	price.value
+	subject
+
+Shpock:
+	canonicalURL
+	media.id
+	price
+	description
+
+OBS: Shopock gets the images from an external source, the media.id is given and the image is returned(ex: https://webimg.secondhandapp.com/w-i-mgl/5f9d6c171564cd3fa7b2f900)
