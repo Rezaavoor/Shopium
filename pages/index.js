@@ -1,37 +1,55 @@
 import Head from 'next/head'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import { usePaginatedQuery } from 'react-query'
+import { useState } from 'react'
+import fetchItems from '../utils/fetchItems'
 
-const fetchTradera = async (key, serachWord, page) => {
-  const res = await (
-    await fetch(
-      `https://www.tradera.com/search.json?q=${serachWord}&page=${page}`
-    )
-  ).json()
-  return res
-}
-
-export default function Home({ data }) {
-  return (
-    <div>
-      <Head>
-        <title>Shopium</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <p>helow</p>
-      {data + ''}
-    </div>
-  )
-}
-
-export async function getServerSideProps() {
-  const { resolvedData, latestData, status } = usePaginatedQuery(
-    ['Tradera API', 'iphone', 1],
-    fetchTradera
-  )
-  return {
-    props: {
-      data: { resolvedData, latestData, status },
-    },
+export default function Home() {
+  const searchWord = 'samsung s9'
+  const page = {
+    page: 1,
+    od: '',
   }
+  const { resolvedData, latestData, status } = usePaginatedQuery(
+    ['searchItems', searchWord, page],
+    fetchItems
+  )
+  // useEffect(() => {
+  //   axios
+  //     .post('/api/getItems', { tes: 'test' })
+  //     .then((res) => console.log(res.data))
+  // }, [])
+
+  return (
+    <>
+      <div>
+        <Head>
+          <title>Shopium</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        {status === 'success' &&
+          resolvedData.traderaData.items.map((item) => (
+            <p key={item.itemId}>{item.shortDescription}</p>
+          ))}
+        <button onClick={() => console.log(resolvedData)}>click me</button>
+      </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
+  )
 }
+
+// export async function getServerSideProps() {
+// const data = await axios.post('/api/getItems', {
+//   serachWord: 'iphone',
+//   page: {
+//     page: 1,
+//     od: '',
+//   },
+// })
+// console.log('fetched')
+// return {
+//   props: {
+//     data,
+//   },
+// }
+// }
