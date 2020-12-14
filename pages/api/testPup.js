@@ -1,11 +1,11 @@
 import chromium from 'chrome-aws-lambda'
+import puppeteer from 'puppeteer'
 export default async (req, res) => {
   let browser
   let data = ''
   try {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
       // dev
-      import puppeteer from 'puppeteer'
       console.log('using usual puppeter')
       browser = await puppeteer.launch()
     } else {
