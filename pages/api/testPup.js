@@ -21,7 +21,6 @@ export default async (req, res) => {
     }
     const page = await browser.newPage()
     await page.goto('https://example.com')
-    await page.screenshot({ path: 'example.png' })
     data = await page.evaluate(() => document.querySelector('*').outerHTML)
     console.log('data fetched')
   } catch (error) {
