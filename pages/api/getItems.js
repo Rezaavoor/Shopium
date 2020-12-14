@@ -1,13 +1,16 @@
 import axios from 'axios'
 
 export default async (req, res) => {
-  const { searchWord, page } = req.body
+  if (req.method == 'POST') {
+    const { searchWord, page } = req.body
 
-  const traderaData = await fetchTradera(searchWord, page)
-  const shpockData = await fetchShpock(searchWord, page.od)
+    const traderaData = await fetchTradera(searchWord, page.page)
+    const shpockData = await fetchShpock(searchWord, page.od) //od is only for shpock
 
-  res.statusCode = 200
-  res.json({ traderaData, shpockData })
+    res.statusCode = 200
+    res.json({ traderaData, shpockData })
+  }
+  res.json({ error: 'bad request' })
 }
 
 const fetchTradera = async (searchWord, page = 1) => {

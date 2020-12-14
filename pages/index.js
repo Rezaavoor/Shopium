@@ -14,11 +14,6 @@ export default function Home() {
     ['searchItems', searchWord, page],
     fetchItems
   )
-  // useEffect(() => {
-  //   axios
-  //     .post('/api/getItems', { tes: 'test' })
-  //     .then((res) => console.log(res.data))
-  // }, [])
 
   return (
     <>
