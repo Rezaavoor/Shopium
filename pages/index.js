@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { ReactQueryDevtools } from 'react-query-devtools'
-import { usePaginatedQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import { useState } from 'react'
 import fetchItems from '../utils/fetchItems'
+import tokenGenerator from '../utils/tokenGenerator'
 
 export default function Home() {
   const searchWord = 'samsung s9'
@@ -10,9 +10,17 @@ export default function Home() {
     page: 1,
     od: '',
   }
-  const { resolvedData, latestData, status } = usePaginatedQuery(
-    ['searchItems', searchWord, page],
-    fetchItems
+  const { data: token, status: tokenStatus } = useQuery(
+    'generateToken',
+    tokenGenerator,
+    { staleTime: 900000 } //15min
+  )
+
+  const [startFetching, setStartFetching] = useState(false)
+  const { data: itemsData, status: itemsStatus } = useQuery(
+    ['searchItems', token, searchWord, page],
+    fetchItems,
+    { enabled: startFetching }
   )
 
   return (
@@ -22,29 +30,20 @@ export default function Home() {
           <title>Shopium</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {status === 'success' &&
-          resolvedData.traderaData.items.map((item) => (
-            <p key={item.itemId}>{item.shortDescription}</p>
-          ))}
-        <button onClick={() => console.log(resolvedData)}>click me</button>
+        <button
+          onClick={() => {
+            setStartFetching(true)
+          }}
+        >
+          show data
+        </button>
+        <br />
+        {itemsStatus === 'success'
+          ? itemsData.blocketData.items.map((item) => (
+              <p key={item.ad_id}>{item.subject}</p>
+            ))
+          : itemsStatus === 'loading' && 'loading'}
       </div>
-      <ReactQueryDevtools initialIsOpen={false} />
     </>
   )
 }
-
-// export async function getServerSideProps() {
-// const data = await axios.post('/api/getItems', {
-//   serachWord: 'iphone',
-//   page: {
-//     page: 1,
-//     od: '',
-//   },
-// })
-// console.log('fetched')
-// return {
-//   props: {
-//     data,
-//   },
-// }
-// }

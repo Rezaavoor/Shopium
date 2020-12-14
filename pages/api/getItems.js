@@ -2,15 +2,15 @@ import axios from 'axios'
 
 export default async (req, res) => {
   if (req.method == 'POST') {
-    const { searchWord, page } = req.body
+    const { token, searchWord, page } = req.body
 
     const traderaData = await fetchTradera(searchWord, page.page)
+    const blocketData = await fetchBlocket(token, searchWord, page.page) //blocket requires a bearer token
     const shpockData = await fetchShpock(searchWord, page.od) //od is only for shpock
 
     res.statusCode = 200
-    res.json({ traderaData, shpockData })
-  }
-  res.json({ error: 'bad request' })
+    res.json({ traderaData, shpockData, blocketData })
+  } else res.json({ error: 'bad request' })
 }
 
 const fetchTradera = async (searchWord, page = 1) => {
@@ -18,7 +18,7 @@ const fetchTradera = async (searchWord, page = 1) => {
     `https://www.tradera.com/search.json?q=${searchWord}&spage=${page}`
   )
   const items = res.data.items.slice(0, 40)
-  const next = res.data.pagination.pageIndex + 1 //current page index + 1
+  const next = page + 1 //current page index + 1
   return { items, next }
 }
 
@@ -32,5 +32,18 @@ const fetchShpock = async (searchWord, od = '') => {
   const itemSearch = res.data.data.itemSearch
   const items = itemSearch.itemResults[0].items
   const next = itemSearch.od
+  return { items, next }
+}
+
+const fetchBlocket = async (token, searchWord, page) => {
+  const res = await axios({
+    method: 'get',
+    url: `https://api.blocket.se/search_bff/v1/content?lim=40&q=${searchWord}&page=${
+      page - 1
+    }`,
+    headers: { Authorization: token },
+  })
+  const items = res.data.data
+  const next = page
   return { items, next }
 }
