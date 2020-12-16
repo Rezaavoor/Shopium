@@ -1,26 +1,26 @@
 import Head from 'next/head'
-import { useQuery } from 'react-query'
+import { queryCache, useQuery } from 'react-query'
 import { useState } from 'react'
 import fetchItems from '../utils/fetchItems'
 import tokenGenerator from '../utils/tokenGenerator'
 
 export default function Home() {
   const searchWord = 'samsung s9'
-  const page = {
+  const [page, setPage] = useState({
     page: 1,
     od: '',
-  }
+  })
   const { data: token, status: tokenStatus } = useQuery(
     'generateToken',
     tokenGenerator,
-    { staleTime: 900000 } //15min
+    { staleTime: 900000 } //data is old after 15min
   )
 
   const [startFetching, setStartFetching] = useState(false)
   const { data: itemsData, status: itemsStatus } = useQuery(
     ['searchItems', token, searchWord, page],
     fetchItems,
-    { enabled: startFetching }
+    { enabled: startFetching, staleTime: 900000 }
   )
 
   return (
@@ -37,12 +37,30 @@ export default function Home() {
         >
           show data
         </button>
+        <button onClick={() => queryCache.invalidateQueries('generateToken')}>
+          update token
+        </button>
+        <button
+          onClick={() => {
+            setPage({
+              od: itemsData.shpockData.next,
+              page: itemsData.traderaData.next,
+            })
+            console.log(page)
+            queryCache.invalidateQueries('searchItems')
+          }}
+        >
+          next page
+        </button>
         <br />
+        <p>blocket items:{itemsData && itemsData.blocketData.items.length}</p>
+        <p>tradera items:{itemsData && itemsData.traderaData.items.length}</p>
+        <p>shpock items:{itemsData && itemsData.shpockData.items.length}</p>
         {itemsStatus === 'success'
           ? itemsData.blocketData.items.map((item) => (
               <p key={item.ad_id}>{item.subject}</p>
             ))
-          : itemsStatus === 'loading' && 'loading'}
+          : itemsStatus}
       </div>
     </>
   )
