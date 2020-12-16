@@ -4,12 +4,25 @@ export default async (req, res) => {
   if (req.method == 'POST') {
     const { token, searchWord, page } = req.body
 
-    const traderaData = await fetchTradera(searchWord, page.page)
-    const blocketData = await fetchBlocket(token, searchWord, page.page) //blocket requires a bearer token
-    const shpockData = await fetchShpock(searchWord, page.od) //od is only for shpock
-
-    res.statusCode = 200
-    res.json({ traderaData, shpockData, blocketData })
+    try {
+      const traderaData = await fetchTradera(searchWord, page.page)
+      const blocketData = await fetchBlocket(token, searchWord, page.page) //blocket requires a bearer token
+      const shpockData = await fetchShpock(searchWord, page.od) //od is only for shpock
+      res.statusCode = 200
+      res.json({ traderaData, shpockData, blocketData })
+    } catch (e) {
+      if (e.response.status == 401) {
+        res.statusCode = 401
+        res.json({
+          authorize: { status: 'Could not find authentication method' },
+        })
+      } else {
+        res.statusCode = 404
+        res.json({
+          error: e,
+        })
+      }
+    }
   } else res.json({ error: 'bad request' })
 }
 
@@ -41,7 +54,7 @@ const fetchBlocket = async (token, searchWord, page) => {
     url: `https://api.blocket.se/search_bff/v1/content?lim=40&q=${searchWord}&page=${
       page - 1
     }`,
-    headers: { Authorization: token },
+    headers: { Authorization: 'token' },
   })
   const items = res.data.data
   const next = page
