@@ -55,7 +55,10 @@ export default function Home() {
         <p>blocket items:{itemsData && itemsData.blocketData.items.length}</p>
         <p>tradera items:{itemsData && itemsData.traderaData.items.length}</p>
         <p>shpock items:{itemsData && itemsData.shpockData.items.length}</p>
-        <p>prisjakt items:{itemsData && itemsData.prisjaktData.items.length}</p>
+        <p>
+          pricerunner items:
+          {itemsData && itemsData.pricerunnerData.items.length}
+        </p>
         {itemsStatus === 'success'
           ? itemsData.blocketData.items.map((item) => (
               <p key={item.ad_id}>{item.subject}</p>

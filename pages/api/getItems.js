@@ -5,23 +5,28 @@ export default async (req, res) => {
     const { token, searchWord, page } = req.body
 
     try {
-      const traderaData = await fetchTradera(searchWord, page.page)
-      const blocketData = await fetchBlocket(token, searchWord, page.page) //blocket requires a bearer token
-      const shpockData = await fetchShpock(searchWord, page.od) //od is only for shpock
-      const prisjaktData = await fetchPrisjakt(searchWord)
+      const allData = await Promise.all([
+        fetchTradera(searchWord, page.page),
+        fetchShpock(searchWord, page.od), //od is only for shpock
+        fetchBlocket(token, searchWord, page.page), //blocket requires a bearer token
+        fetchPricerunner(searchWord),
+      ])
       res.statusCode = 200
-      res.json({ traderaData, shpockData, blocketData, prisjaktData })
+      res.json({
+        traderaData: allData[0],
+        shpockData: allData[1],
+        blocketData: allData[2],
+        pricerunnerData: allData[3],
+      })
     } catch (e) {
-      if (e.response.status == 401) {
+      if (e.response && e.response.status == 401) {
         res.statusCode = 401
         res.json({
           authorize: { status: 'Could not find authentication method' },
         })
       } else {
         res.statusCode = 404
-        res.json({
-          error: e,
-        })
+        res.json({ error: e + '' })
       }
     }
   } else res.json({ error: 'bad request' })
@@ -64,12 +69,11 @@ const fetchBlocket = async (token, searchWord, page) => {
   return { items, next }
 }
 
-const fetchPrisjakt = async (searchWord) => {
+const fetchPricerunner = async (searchWord) => {
   const searchW = searchWord.replace(' ', '%20')
-  const date = new Date().toISOString().split('T')[0]
   const res = await axios.get(
-    `https://www.prisjakt.nu/_internal/graphql?release=${date}T12%3A30%3A27Z%7Cd6e7c2e0&main=search&variables=%7B%22id%22%3A%22search%22%2C%22query%22%3A%22${searchW}%22%2C%22sort%22%3A%22score%22%2C%22order%22%3A%22desc%22%2C%22offset%22%3A0%2C%22filters%22%3A%5B%7B%22id%22%3A%22category_id%22%2C%22selected%22%3A%5B%5D%7D%2C%7B%22id%22%3A%22brand_id%22%2C%22selected%22%3A%5B%5D%7D%2C%7B%22id%22%3A%22lowest_price%22%7D%2C%7B%22id%22%3A%22user_rating%22%7D%5D%2C%22productModes%22%3A%5B%22product%22%2C%22raw%22%5D%2C%22campaignId%22%3A4%2C%22personalizationClientId%22%3A%22%22%2C%22pulseEnvironmentId%22%3A%22sdrn%3Aschibsted%3Aenvironment%3Aundefined%22%7D`
+    `https://www.pricerunner.se/public/search/v2/se?q=${searchW}`
   )
-  const items = res.data.data.search.resources.products.nodes.slice(0, 5)
+  const items = res.data.products.slice(0, 5)
   return { items }
 }
