@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.4",
     "axios": "^0.21.0",
     "chrome-aws-lambda": "^5.5.0",
     "next": "10.0.3",
@@ -18,6 +19,7 @@
     "react-query-devtools": "^2.6.3"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.1.2",
     "puppeteer": "^5.5.0"
   }
 }
