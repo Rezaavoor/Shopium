@@ -1,8 +1,10 @@
-import Head from 'next/head'
+import { css } from '@emotion/react'
 import { queryCache, useQuery } from 'react-query'
 import { useState } from 'react'
 import fetchItems from '../utils/fetchItems'
 import tokenGenerator from '../utils/tokenGenerator'
+import Layout from '../components/Layout'
+import Header from '../components/Header'
 
 export default function Home() {
   const searchWord = 'samsung s9'
@@ -24,47 +26,47 @@ export default function Home() {
   )
 
   return (
-    <>
-      <div>
-        <Head>
-          <title>Shopium</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <button
-          onClick={() => {
-            setStartFetching(true)
-          }}
-        >
-          show data
-        </button>
-        <button onClick={() => queryCache.invalidateQueries('generateToken')}>
-          update token
-        </button>
-        <button
-          onClick={() => {
-            setPage({
-              od: itemsData.shpockData.next,
-              page: itemsData.traderaData.next,
-            })
-            queryCache.invalidateQueries('searchItems')
-          }}
-        >
-          next page
-        </button>
-        <br />
-        <p>blocket items:{itemsData && itemsData.blocketData.items.length}</p>
-        <p>tradera items:{itemsData && itemsData.traderaData.items.length}</p>
-        <p>shpock items:{itemsData && itemsData.shpockData.items.length}</p>
-        <p>
-          pricerunner items:
-          {itemsData && itemsData.pricerunnerData.items.length}
-        </p>
-        {itemsStatus === 'success'
-          ? itemsData.blocketData.items.map((item) => (
-              <p key={item.ad_id}>{item.subject}</p>
-            ))
-          : itemsStatus}
-      </div>
-    </>
+    <Layout>
+      <Header />
+      <p
+        css={css`
+          font-size: 1.5em;
+          color: hotpink;
+          letter-spacing: 1px;
+          margin: 0.5em;
+          padding: 0;
+          &:hover {
+            color: lightblue;
+          }
+        `}
+      >
+        Products
+      </p>
+    </Layout>
   )
+}
+
+{
+  /* <button
+  onClick={() => {
+    setStartFetching(true)
+  }}
+>
+  show data
+</button>
+
+<button onClick={() => queryCache.invalidateQueries('generateToken')}>
+update token
+</button>
+<button
+  onClick={() => {
+    setPage({
+      od: itemsData.shpockData.next,
+      page: itemsData.traderaData.next,
+    })
+    queryCache.invalidateQueries('searchItems')
+  }}
+>
+  next page
+</button> */
 }
