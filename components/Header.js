@@ -4,7 +4,7 @@ import { css, useTheme } from '@emotion/react'
 
 export default function Header() {
   const theme = useTheme()
-  const scale = 0.7
+  const scale = 0.7 //to resize all images
   return (
     <div
       css={css`
@@ -13,6 +13,7 @@ export default function Header() {
         position: relative;
         text-align: center;
         background-color: ${theme.colors.primary};
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
       `}
     >
       <div
