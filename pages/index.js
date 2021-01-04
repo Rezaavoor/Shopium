@@ -5,6 +5,7 @@ import fetchItems from '../utils/fetchItems'
 import tokenGenerator from '../utils/tokenGenerator'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
+import Products from '../components/Products'
 
 export default function Home() {
   const searchWord = 'samsung s9'
@@ -28,20 +29,7 @@ export default function Home() {
   return (
     <Layout>
       <Header />
-      <p
-        css={css`
-          font-size: 1.5em;
-          color: hotpink;
-          letter-spacing: 1px;
-          margin: 0.5em;
-          padding: 0;
-          &:hover {
-            color: lightblue;
-          }
-        `}
-      >
-        Products
-      </p>
+      <Products />
     </Layout>
   )
 }
