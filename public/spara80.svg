@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="290.614" height="236.338" viewBox="0 0 290.614 236.338">
+  <defs>
+    <filter id="Path_3" x="0" y="0" width="290.614" height="236.338" filterUnits="userSpaceOnUse">
+      <feOffset dy="8" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="9.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="_80_" x="86.764" y="75.319" width="134" height="97" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="spara80" transform="translate(28.5 20.5)">
+    <g transform="matrix(1, 0, 0, 1, -28.5, -20.5)" filter="url(#Path_3)">
+      <path id="Path_3-2" data-name="Path 3" d="M.133,53.752c-.609,17.39.609,104.339,9.134,109.872s221.656,32.408,224.092,0S220.571,7.906,197.431.792.742,36.362.133,53.752Z" transform="translate(262.11 199.84) rotate(180)" fill="#e5ecec"/>
+    </g>
+    <text id="Spara_upp_till" data-name="Spara upp till" transform="translate(97.264 47.819)" fill="#777675" font-size="22" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="-66.36" y="0">Spara upp till</tspan></text>
+    <g transform="matrix(1, 0, 0, 1, -28.5, -20.5)" filter="url(#_80_)">
+      <text id="_80_2" data-name="80%" transform="translate(153.76 145.32)" fill="#777675" font-size="59" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="-57.545" y="0">80%</tspan></text>
+    </g>
+  </g>
+</svg>

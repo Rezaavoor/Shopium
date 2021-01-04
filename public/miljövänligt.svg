@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="208.079" height="178.331" viewBox="0 0 208.079 178.331">
+  <defs>
+    <filter id="Path_3" x="0" y="0" width="208.079" height="178.331" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="miljövänligt" transform="matrix(-0.966, -0.259, 0.259, -0.966, 155.374, 146.331)">
+    <g transform="matrix(-0.97, 0.26, -0.26, -0.97, 187.95, 101.13)" filter="url(#Path_3)">
+      <path id="Path_3-2" data-name="Path 3" d="M1.04,21.736C-5.6,40.6,21.5,83.979,26.6,87.291S128.261,74.557,129.719,55.158,111.547,5.583,97.7,1.324,7.676,2.872,1.04,21.736Z" transform="matrix(0.97, 0.26, -0.26, 0.97, 52.71, 28)" fill="#e5ecec"/>
+    </g>
+    <text id="Miljövänligt-2" data-name="Miljövänligt" transform="translate(107.617 32.985) rotate(171)" fill="#707070" font-size="17" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="0" y="0">Miljövänligt</tspan></text>
+  </g>
+</svg>

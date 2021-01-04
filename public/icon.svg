@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="138.5" height="42.195" viewBox="0 0 138.5 42.195">
+  <g id="icon" transform="translate(-6.5 -53.805)">
+    <g id="icon-2" data-name="icon">
+      <line id="Line_3" data-name="Line 3" x1="13" transform="translate(50.5 56.5)" fill="none" stroke="#0e3665" stroke-linecap="round" stroke-width="4"/>
+      <line id="Line_4" data-name="Line 4" x1="15" y2="29" transform="translate(35.5 56.5)" fill="none" stroke="#0e3665" stroke-linecap="round" stroke-width="4"/>
+      <path id="Path_17" data-name="Path 17" d="M21,0H2.727" transform="translate(14.5 85.5)" fill="none" stroke="#0e3665" stroke-linecap="round" stroke-width="4"/>
+      <g id="same_color" data-name="same color">
+        <line id="Line_6" data-name="Line 6" x1="19" transform="translate(14.5 76.5)" fill="none" stroke="#777675" stroke-linecap="round" stroke-width="4"/>
+        <line id="Line_7" data-name="Line 7" x1="27" transform="translate(11.5 67.5)" fill="none" stroke="#777675" stroke-linecap="round" stroke-width="4"/>
+        <line id="Line_8" data-name="Line 8" x1="34" transform="translate(8.5 58.5)" fill="none" stroke="#777675" stroke-linecap="round" stroke-width="4"/>
+        <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(18 90)" fill="#fff" stroke="#777675" stroke-linecap="round" stroke-width="4">
+          <ellipse cx="3.5" cy="3" rx="3.5" ry="3" stroke="none"/>
+          <ellipse cx="3.5" cy="3" rx="1.5" ry="1" fill="none"/>
+        </g>
+        <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(27 90)" fill="#fff" stroke="#777675" stroke-linecap="round" stroke-width="4">
+          <ellipse cx="3.5" cy="3" rx="3.5" ry="3" stroke="none"/>
+          <ellipse cx="3.5" cy="3" rx="1.5" ry="1" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <text id="hopium" transform="translate(96 85)" fill="#0e3665" font-size="27" font-family="SourceCodeProForPowerline-BoldIt, Source Code Pro for Powerline" font-weight="700" font-style="italic"><tspan x="-48.519" y="0">hopium</tspan></text>
+  </g>
+</svg>

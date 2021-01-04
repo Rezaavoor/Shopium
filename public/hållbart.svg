@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="274.615" height="262.718" viewBox="0 0 274.615 262.718">
+  <defs>
+    <filter id="Path_3" x="0" y="0" width="274.615" height="262.718" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="11.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="hållbart" transform="matrix(-0.966, -0.259, 0.259, -0.966, 200.098, 224.218)">
+    <g transform="matrix(-0.97, 0.26, -0.26, -0.97, 251.31, 164.79)" filter="url(#Path_3)">
+      <path id="Path_3-2" data-name="Path 3" d="M2.5,51.648c-9.17,26.07,9.284,97.967,16.337,102.544s148.5-28.962,150.512-55.772,6.939-91.8-12.2-97.687S11.674,25.578,2.5,51.648Z" transform="matrix(0.97, 0.26, -0.26, 0.97, 74.52, 30.5)" fill="#e5ecec"/>
+    </g>
+    <text id="Hållbart-2" data-name="Hållbart" transform="matrix(-0.848, 0.53, -0.53, -0.848, 118.446, 44.331)" fill="#707070" font-size="25" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="0" y="0">Hållbart</tspan></text>
+  </g>
+</svg>

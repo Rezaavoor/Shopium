@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="168.573" height="145.497" viewBox="0 0 168.573 145.497">
+  <defs>
+    <filter id="Path_3" x="0" y="0" width="168.573" height="145.497" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="billigt" transform="matrix(0.966, 0.259, -0.259, 0.966, 46.283, 28)">
+    <g transform="matrix(0.97, -0.26, 0.26, 0.97, -51.95, -15.07)" filter="url(#Path_3)">
+      <path id="Path_3-2" data-name="Path 3" d="M.455,17.763c-4.7,13.36,28.5,42.583,32.114,44.929s61.8-14.644,62.837-28.383S91.733,3.73,81.923.714,5.154,4.4.455,17.763Z" transform="matrix(-0.97, -0.26, 0.26, -0.97, 122.29, 113.5)" fill="#e5ecec"/>
+    </g>
+    <text id="Billigt-2" data-name="Billigt" transform="matrix(1, -0.017, 0.017, 1, 32.513, 36.982)" fill="#707070" font-size="12" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="0" y="0">Billigt</tspan></text>
+  </g>
+</svg>
