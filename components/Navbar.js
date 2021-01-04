@@ -1,6 +1,7 @@
 import { css, useTheme } from '@emotion/react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import Button from './Button'
 
 export default function Navbar() {
   const theme = useTheme()
@@ -18,13 +19,13 @@ export default function Navbar() {
           setonScroll({
             boxShadow: 6,
             backgroundColor: theme.colors.primary,
-            height: 30,
+            height: 40,
           })
         } else {
           setonScroll({
             boxShadow: 0,
             backgroundColor: 'transparent',
-            height: 40,
+            height: 50,
           })
         }
       }
@@ -56,11 +57,17 @@ export default function Navbar() {
           padding: 0 25px;
         `}
       >
-        <Image src="/icon.svg" width="136" height="25" />
+        <div
+          css={css`
+            cursor: pointer;
+          `}
+        >
+          <Image src="/icon.svg" width="90" height="25" />
+        </div>
         <div>
-          <p1>Bli medlem</p1>
-          <p1>Sparade</p1>
-          <p1>Logga in</p1>
+          <Button>Bli medlem</Button>
+          <Button secondary>Sparade</Button>
+          <Button secondary>Logga in</Button>
         </div>
       </div>
     </div>
