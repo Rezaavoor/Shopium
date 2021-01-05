@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import { css, ThemeProvider } from '@emotion/react'
 import { queryCache, useQuery } from 'react-query'
 import { useState } from 'react'
 import fetchItems from '../utils/fetchItems'
@@ -6,6 +6,7 @@ import tokenGenerator from '../utils/tokenGenerator'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 import Products from '../components/Products'
+import theme from '../styles/theme'
 
 export default function Home() {
   const searchWord = 'samsung s9'
@@ -27,10 +28,12 @@ export default function Home() {
   )
 
   return (
-    <Layout>
-      <Header />
-      <Products />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Header />
+        <Products />
+      </Layout>
+    </ThemeProvider>
   )
 }
 
