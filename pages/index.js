@@ -9,7 +9,7 @@ import Products from '../components/Products'
 import theme from '../styles/theme'
 
 export default function Home() {
-  const searchWord = 'samsung s9'
+  const searchWord = 'ps5'
   const [page, setPage] = useState({
     page: 1,
     od: '',
@@ -20,7 +20,7 @@ export default function Home() {
     { staleTime: 900000 } //data is old after 15min
   )
 
-  const [startFetching, setStartFetching] = useState(false)
+  const [startFetching, setStartFetching] = useState(true)
   const { data: itemsData, status: itemsStatus } = useQuery(
     ['searchItems', token, searchWord, page],
     fetchItems,
@@ -31,7 +31,11 @@ export default function Home() {
     <ThemeProvider theme={theme}>
       <Layout>
         <Header />
-        <Products />
+        {itemsStatus == 'success' && itemsData ? (
+          <Products items={itemsData} />
+        ) : (
+          itemsStatus
+        )}
       </Layout>
     </ThemeProvider>
   )

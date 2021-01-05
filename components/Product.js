@@ -5,95 +5,105 @@ import React from 'react'
 export default function Product(props) {
   const theme = useTheme()
   const color = {
-    primary: props.blocket
-      ? theme.colors.b_primary
-      : props.tradera
-      ? theme.colors.t_primary
-      : theme.colors.s_primary,
-    secondary: props.blocket
-      ? theme.colors.b_secondary
-      : props.tradera
-      ? theme.colors.t_secondary
-      : theme.colors.s_secondary,
+    primary:
+      props.origin == 'blocket'
+        ? theme.colors.b_primary
+        : props.origin == 'tradera'
+        ? theme.colors.t_primary
+        : theme.colors.s_primary,
+    secondary:
+      props.origin == 'blocket'
+        ? theme.colors.b_secondary
+        : props.origin == 'tradera'
+        ? theme.colors.t_secondary
+        : theme.colors.s_secondary,
   }
-  const OriginLogo = () =>
-    props.blocket ? (
-      <Image src="/blocket-img.svg" width="60px" height="60px" />
-    ) : props.tradera ? (
-      <Image src="/tradera-img.svg" width="30px" height="30px" />
-    ) : (
-      <Image src="/shpock-img.svg" width="38px" height="38px" />
-    )
+
   return (
     <div
       css={css`
-        height: 260px;
         width: 330px;
-        margin: 25px;
+        height: 0;
+        padding-top: 22%; //having a fixed aspect ratio. cool!!
         background-color: ${color.secondary};
-        border-radius: 20px;
         filter: drop-shadow(8px 9px 18px rgba(0, 0, 0, 0.26));
-        display: flex;
+        margin: 25px;
+        border-radius: 8%;
       `}
     >
       <div
         css={css`
           position: absolute;
-          top: -8px;
-          left: 40px;
-        `}
-      >
-        <Image
-          src={`/${
-            props.blocket ? 'blocket' : props.tradera ? 'tradera' : 'shpock'
-          }-line.svg`}
-          width="35px"
-          height="25px"
-        />
-      </div>
-      <div
-        css={css`
-          width: 45%;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
           display: flex;
-          justify-content: center;
-          flex-direction: column;
         `}
       >
-        <p
-          css={css`
-            margin: 0 5px;
-          `}
-        >
-          {props.name}
-        </p>
-        <h2
-          css={css`
-            margin-bottom: 60px;
-            color: green;
-          `}
-        >
-          {props.price + ' kr'}
-        </h2>
         <div
           css={css`
             position: absolute;
-            bottom: 0;
-            left: 15%;
-            transform: translate(-15%);
+            top: -8px;
+            left: 40px;
           `}
         >
-          <OriginLogo />
+          <Image src={`/${props.origin}-line.svg`} width="35px" height="25px" />
         </div>
-      </div>
-      <div
-        css={css`
-          width: 55%;
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-        `}
-      >
-        <Image src={props.img} layout="fill" />
+        <div
+          css={css`
+            width: 45%;
+            position: relative;
+          `}
+        >
+          <p
+            css={css`
+              margin: 0 5px;
+              position: absolute;
+              top: 20%;
+              left: 50%;
+              transform: translate(-50%);
+              width: 100%;
+            `}
+          >
+            {props.description}
+          </p>
+          <h3
+            css={css`
+              margin-bottom: 60px;
+              color: green;
+              position: absolute;
+              bottom: 0;
+              left: 30%;
+            `}
+          >
+            {props.price + ' kr'}
+          </h3>
+          <div
+            css={css`
+              position: absolute;
+              bottom: 0;
+              left: 40%;
+            `}
+          >
+            <Image
+              src={`/${props.origin}-img.svg`}
+              width="30px"
+              height="30px"
+            />
+          </div>
+        </div>
+        <div
+          css={css`
+            width: 55%;
+            position: relative;
+            left: 1px; // fixing a minor bug
+            border-radius: 8%;
+            overflow: hidden;
+          `}
+        >
+          <Image src={props.img} layout="fill" />
+        </div>
       </div>
     </div>
   )
