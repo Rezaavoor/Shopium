@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import React, { useEffect } from 'react'
 import shuffleItems from '../utils/shuffleItems'
+import Pricerunner from './Pricerunner'
 import Product from './Product'
 
 export default function Products(props) {
@@ -20,7 +21,6 @@ export default function Products(props) {
     items.traderaData.items,
     items.shpockData.items,
   ])
-  console.log(items.pricerunnerData.items[0])
   return (
     <div
       css={css`
@@ -36,20 +36,27 @@ export default function Products(props) {
           margin: auto;
           padding: 0 25px;
           text-align: center;
-          display: grid;
           position: relative;
-          grid-template-columns: 1fr 1fr 1fr;
         `}
       >
-        {products.map((p) => (
-          <Product
-            key={p.id}
-            origin={p.origin}
-            description={p.description}
-            price={p.price}
-            img={p.imageUrl}
-          />
-        ))}
+        <Pricerunner data={items.pricerunnerData.items} />
+        <div
+          css={css`
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+          `}
+        >
+          {products.map((p) => (
+            <Product
+              key={p.id}
+              origin={p.origin}
+              description={p.description}
+              price={p.price}
+              img={p.imageUrl}
+              url={p.url}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
