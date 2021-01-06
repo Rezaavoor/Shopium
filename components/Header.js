@@ -40,7 +40,13 @@ export default function Header() {
             }
           `}
         >
-          <h4>Välkommen till</h4>
+          <h4
+            css={css`
+              margin: 0;
+            `}
+          >
+            Välkommen till
+          </h4>
           <h1
             css={css`
               margin-left: 30px;
