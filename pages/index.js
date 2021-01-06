@@ -1,43 +1,38 @@
-import { css, ThemeProvider } from '@emotion/react'
+import { css } from '@emotion/react'
 import { queryCache, useQuery } from 'react-query'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { Context } from '../utils/context'
 import fetchItems from '../utils/fetchItems'
 import tokenGenerator from '../utils/tokenGenerator'
-import Layout from '../components/Layout'
 import Header from '../components/Header'
 import Products from '../components/Products'
-import theme from '../styles/theme'
+import Searchbar from '../components/Searchbar'
 
 export default function Home() {
-  const searchWord = 'ps5'
-  const [page, setPage] = useState({
-    page: 1,
-    od: '',
-  })
+  const [searchWord, setSearchWord] = useContext(Context).searchWord
+  const [page, setPage] = useContext(Context).page
   const { data: token, status: tokenStatus } = useQuery(
     'generateToken',
     tokenGenerator,
     { staleTime: 900000 } //data is old after 15min
   )
 
-  const [startFetching, setStartFetching] = useState(true)
   const { data: itemsData, status: itemsStatus } = useQuery(
     ['searchItems', token, searchWord, page],
     fetchItems,
-    { enabled: startFetching, staleTime: 900000 }
+    { staleTime: 900000 }
   )
 
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Header />
-        {itemsStatus == 'success' && itemsData ? (
-          <Products items={itemsData} />
-        ) : (
-          itemsStatus
-        )}
-      </Layout>
-    </ThemeProvider>
+    <>
+      <Header />
+      <Searchbar />
+      {itemsStatus == 'success' && itemsData ? (
+        <Products items={itemsData} />
+      ) : (
+        itemsStatus
+      )}
+    </>
   )
 }
 

@@ -19,7 +19,7 @@ export default function Layout(props) {
         `}
       >
         <Navbar />
-        <div>{props.children}</div>
+        {props.children}
         <Footer />
       </div>
     </>
