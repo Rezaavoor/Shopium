@@ -6,6 +6,14 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: #707070;
 }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 0;
+  background: #dee8f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #0e3665;
+}
 
 a {
   color: inherit;
