@@ -22,9 +22,7 @@ export default function Product(props) {
   return (
     <div
       css={css`
-        width: 330px;
-        height: 0;
-        padding-top: 22%; //having a fixed aspect ratio. cool!!
+        padding-top: 60%; //having a fixed aspect ratio. cool!!
         background-color: ${color.secondary};
         filter: drop-shadow(8px 9px 18px rgba(0, 0, 0, 0.26));
         margin: 25px;
@@ -64,6 +62,16 @@ export default function Product(props) {
               left: 50%;
               transform: translate(-50%);
               width: 100%;
+              max-height: 40%;
+              overflow: auto;
+              &::-webkit-scrollbar {
+                width: 6px;
+                height: 0;
+                background: transparent; // Chrome/Safari/Webkit
+              }
+              &::-webkit-scrollbar-thumb {
+                background: ${color.primary};
+              }
             `}
           >
             {props.description}
@@ -77,7 +85,7 @@ export default function Product(props) {
               left: 30%;
             `}
           >
-            {props.price + ' kr'}
+            {props.price ? props.price + ' kr' : ''}
           </h3>
           <div
             css={css`
@@ -90,6 +98,7 @@ export default function Product(props) {
               src={`/${props.origin}-img.svg`}
               width="30px"
               height="30px"
+              alt={props.origin}
             />
           </div>
         </div>
@@ -102,7 +111,11 @@ export default function Product(props) {
             overflow: hidden;
           `}
         >
-          <Image src={props.img} layout="fill" />
+          <Image
+            src={props.img ? props.img : '/no-image.svg'}
+            layout="fill"
+            alt={props.origin}
+          />
         </div>
       </div>
     </div>
