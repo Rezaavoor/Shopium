@@ -9,8 +9,8 @@ import Products from '../components/Products'
 import Searchbar from '../components/Searchbar'
 
 export default function Home() {
-  const [searchWord, setSearchWord] = useContext(Context).searchWord
-  const [page, setPage] = useContext(Context).page
+  const [searchWord, _] = useContext(Context).searchWord
+  const [page, __] = useContext(Context).page
   const { data: token, status: tokenStatus } = useQuery(
     'generateToken',
     tokenGenerator,
