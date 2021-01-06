@@ -37,16 +37,30 @@ export default function Product(props) {
           width: 100%;
           height: 100%;
           display: flex;
+          :hover {
+            .image-logo {
+              width: 35px;
+              height: 35px;
+            }
+            .image-line {
+              width: 45px;
+              height: 35px;
+            }
+          }
         `}
       >
         <div
+          className="image-line"
           css={css`
             position: absolute;
             top: -8px;
             left: 40px;
+            width: 35px;
+            height: 25px;
+            transition: all 0.5s ease;
           `}
         >
-          <Image src={`/${props.origin}-line.svg`} width="35px" height="25px" />
+          <Image src={`/${props.origin}-line.svg`} layout="fill" />
         </div>
         <div
           css={css`
@@ -88,16 +102,19 @@ export default function Product(props) {
             {props.price ? props.price + ' kr' : ''}
           </h3>
           <div
+            className="image-logo"
             css={css`
               position: absolute;
-              bottom: 0;
+              bottom: 5px;
               left: 40%;
+              width: 30px;
+              height: 30px;
+              transition: all 0.2s ease;
             `}
           >
             <Image
               src={`/${props.origin}-img.svg`}
-              width="30px"
-              height="30px"
+              layout="fill"
               alt={props.origin}
             />
           </div>
@@ -109,7 +126,9 @@ export default function Product(props) {
             left: 1px; // fixing a minor bug
             border-radius: 8%;
             overflow: hidden;
+            cursor: pointer;
           `}
+          onClick={() => window.open(props.url)}
         >
           <Image
             src={props.img ? props.img : '/no-image.svg'}
