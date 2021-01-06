@@ -94,7 +94,7 @@ const fetchBlocket = async (token, searchWord, page) => {
       url: i.share_url,
     }
   })
-  const next = page
+  const next = page + 1
   return { items, next }
 }
 
