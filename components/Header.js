@@ -8,8 +8,11 @@ export default function Header() {
   useEffect(() => {
     //some responsivness stuff
     const width = window.innerWidth
-    if (width < 1050) {
+    if (width < theme.breakpoints[0]) {
       setScale(0.6)
+    }
+    if (width < theme.breakpoints[3]) {
+      setScale(0.5)
     }
   }, [])
   const dotsMove = (start, end) => keyframes`
@@ -26,7 +29,7 @@ export default function Header() {
   return (
     <div
       css={css`
-        width: 100%;
+        width: 100vw;
         height: 600px;
         position: relative;
         text-align: center;
@@ -70,21 +73,28 @@ export default function Header() {
           top: 10vh;
           right: 20vw;
           animation: ${dotsMove('0', '10vw')} 60s ease infinite;
+          ${theme.mq[3]} {
+            //576px
+            display: none;
+          }
         `}
       >
         <Image src="/dots2.svg" layout="fill" />
       </div>
       <div
+        className="test"
         css={css`
           position: relative;
           width: 100%;
           max-width: 1200px;
           height: 100%;
           display: flex;
+          flex-direction: row;
           margin: auto;
           padding: 0 25px;
           ${theme.mq[1]} {
             //900px
+            padding: 0;
             flex-direction: column;
           }
         `}
@@ -124,6 +134,10 @@ export default function Header() {
                 //900px
                 margin: 0;
                 margin-top: 15px;
+              }
+              ${theme.mq[3]} {
+                //576px
+                font-size: 3rem;
               }
             `}
           >
@@ -165,6 +179,11 @@ export default function Header() {
               ${theme.mq[1]} {
                 //900px
                 bottom: 10%;
+                left: 5%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                bottom: 17%;
                 left: 2%;
               }
             `}
@@ -174,7 +193,7 @@ export default function Header() {
               priority={true}
               width={272 * scale}
               height={299 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -186,7 +205,11 @@ export default function Header() {
               ${theme.mq[1]} {
                 //900px
                 bottom: 7%;
-                left: 30%;
+                left: 35%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                left: 35%;
               }
             `}
           >
@@ -195,7 +218,7 @@ export default function Header() {
               priority={true}
               width={436 * scale}
               height={186 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -206,8 +229,12 @@ export default function Header() {
               filter: drop-shadow(8px 9px 18px rgba(0, 0, 0, 0.26));
               ${theme.mq[1]} {
                 //900px
-                top: 50%;
-                right: 30%;
+                top: 55%;
+                right: 38%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                top: 60%;
               }
             `}
           >
@@ -216,7 +243,7 @@ export default function Header() {
               priority={true}
               width={25 * scale}
               height={203 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -228,7 +255,11 @@ export default function Header() {
               ${theme.mq[1]} {
                 //900px
                 bottom: 8%;
-                right: 17%;
+                right: 20%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                display: none;
               }
             `}
           >
@@ -237,7 +268,7 @@ export default function Header() {
               priority={true}
               width={88 * scale}
               height={173 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -248,8 +279,13 @@ export default function Header() {
               filter: drop-shadow(8px 9px 18px rgba(0, 0, 0, 0.26));
               ${theme.mq[1]} {
                 //900px
-                top: 45%;
+                top: 40%;
                 right: 15%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                top: 53%;
+                right: 5%;
               }
             `}
           >
@@ -258,7 +294,7 @@ export default function Header() {
               priority={true}
               width={197 * scale}
               height={312 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           {/********************************************** */}
@@ -270,6 +306,11 @@ export default function Header() {
               ${theme.mq[1]} {
                 //900px
                 top: 50%;
+                left: 35%;
+              }
+              ${theme.mq[3]} {
+                //576px
+                top: 40%;
                 left: 30%;
               }
             `}
@@ -279,7 +320,7 @@ export default function Header() {
               priority={true}
               width={253 * scale}
               height={279 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -299,7 +340,7 @@ export default function Header() {
               priority={true}
               width={233 * scale}
               height={179 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -319,7 +360,7 @@ export default function Header() {
               priority={true}
               width={191 * scale}
               height={184 * scale}
-              quality="100"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
           <div
@@ -327,19 +368,29 @@ export default function Header() {
               position: absolute;
               bottom: 30%;
               right: 35%;
+              width: ${193 * scale + 'px'};
+              height: ${200 * scale + 'px'};
               ${theme.mq[1]} {
                 //900px
                 bottom: 70%;
                 right: 80%;
+                width: ${193 * 1.2 * scale + 'px'};
+                height: ${200 * 1.2 * scale + 'px'};
+              }
+              ${theme.mq[3]} {
+                //576px
+                bottom: 75%;
+                right: 70%;
               }
             `}
           >
             <Image
               src="/billigt.svg"
               priority={true}
-              width={173 * scale}
-              height={179 * scale}
-              quality="100"
+              // width={193 * 1.2 * scale}
+              // height={200 * 1.2 * scale}
+              layout="fill"
+              // quality="100"      //NOTE: add this if the header quality is too low
             />
           </div>
         </div>

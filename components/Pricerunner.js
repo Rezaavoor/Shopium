@@ -14,8 +14,15 @@ export default function Pricerunner({ data }) {
         position: relative;
         top: -5px;
         padding: 1px 15px 15px 15px;
+        margin-bottom: 15px;
         border-radius: 20px;
         text-align: left;
+        ${theme.mq[2]} {
+          //768px
+          width: 90vw;
+          padding: 1px 5px 5px 5px;
+          border-radius: 10px;
+        }
       `}
     >
       <h4>Se hur mycket en ny "{searchWord}" kostar :</h4>
@@ -27,7 +34,7 @@ export default function Pricerunner({ data }) {
               display: flex;
               justify-content: space-between;
               p {
-                margin: 0 20px;
+                margin: 2px 20px;
               }
             `}
           >

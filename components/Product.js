@@ -27,6 +27,11 @@ export default function Product(props) {
         filter: drop-shadow(8px 9px 18px rgba(0, 0, 0, 0.26));
         margin: 25px;
         border-radius: 8%;
+        ${theme.mq[2]} {
+          //768px
+          margin: 8px;
+          border-radius: 5%;
+        }
       `}
     >
       <div
@@ -55,6 +60,18 @@ export default function Product(props) {
               .image-line {
                 width: 35px;
                 height: 25px;
+              }
+            }
+            ${theme.mq[2]} {
+              //576px
+              .image-logo {
+                // no change in size => no hover effect on mobile
+                width: 15px;
+                height: 15px;
+              }
+              .image-line {
+                width: 22px;
+                height: 12px;
               }
             }
           }
@@ -102,25 +119,24 @@ export default function Product(props) {
               &::-webkit-scrollbar-thumb {
                 background: ${color.primary};
               }
+              ${theme.mq[3]} {
+                //576px
+                max-height: 50%;
+              }
             `}
           >
             {props.description}
           </p>
-          <h3
+          <div
             css={css`
-              margin-bottom: 60px;
-              color: green;
               position: absolute;
-              bottom: 0;
-              left: 30%;
-              ${theme.mq[0]} {
-                //1050px
-                bottom: -15px;
-              }
+              width: 100%;
+              bottom: 10%;
+              color: green;
             `}
           >
-            {props.price ? props.price + ' kr' : ''}
-          </h3>
+            <h3>{props.price ? props.price + ' kr' : ''}</h3>
+          </div>
           <div
             className="image-logo"
             css={css`
@@ -152,6 +168,10 @@ export default function Product(props) {
             border-radius: 8%;
             overflow: hidden;
             cursor: pointer;
+            ${theme.mq[2]} {
+              //768px
+              border-radius: 5%;
+            }
           `}
           onClick={() => window.open(props.url)}
         >

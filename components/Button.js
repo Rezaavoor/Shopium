@@ -23,6 +23,11 @@ export default function Button(props) {
           color: ${theme.colors.darkblue};
           background-color: ${theme.colors.secondary};
         }
+        ${theme.mq[3]} {
+          //576px
+          padding: 7px 10px;
+          font-size: 0.7rem;
+        }
       `}
     >
       {props.children}

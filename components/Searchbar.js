@@ -26,6 +26,11 @@ export default function Searchbar() {
           width: 60vw;
           font-size: 1rem;
           padding: 10px 25px;
+          ${theme.mq[2]} {
+            //768px
+            padding: 5px 25px;
+            width: 80vw;
+          }
           border-radius: 5px;
           border: 1px ${theme.colors.darkblue} solid;
           outline: none;

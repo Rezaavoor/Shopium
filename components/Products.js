@@ -44,6 +44,10 @@ export default function Products(props) {
               //1050px
               font-size: 0.8rem;
             }
+            ${theme.mq[2]} {
+              //768px
+              padding: 0 10px;
+            }
           `}
         >
           <Pricerunner data={pricerunnerData.items} />
@@ -51,6 +55,14 @@ export default function Products(props) {
             css={css`
               display: grid;
               grid-template-columns: 1fr 1fr 1fr;
+              ${theme.mq[2]} {
+                //768px
+                grid-template-columns: 1fr 1fr;
+              }
+              ${theme.mq[3]} {
+                //768px
+                grid-template-columns: 1fr;
+              }
             `}
           >
             {products.map((p) => (

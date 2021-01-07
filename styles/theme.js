@@ -15,4 +15,5 @@ export default {
     s_secondary: '#F1FFF7',
   },
   mq: breakpoints.map((bp) => `@media (max-width: ${bp}px)`), // media queries
+  breakpoints,
 }
