@@ -46,6 +46,17 @@ export default function Product(props) {
               width: 45px;
               height: 35px;
             }
+            ${theme.mq[0]} {
+              //1050px
+              .image-logo {
+                width: 25px;
+                height: 25px;
+              }
+              .image-line {
+                width: 35px;
+                height: 25px;
+              }
+            }
           }
         `}
       >
@@ -58,6 +69,11 @@ export default function Product(props) {
             width: 35px;
             height: 25px;
             transition: all 0.5s ease;
+            ${theme.mq[0]} {
+              //1050px
+              width: 30px;
+              height: 20px;
+            }
           `}
         >
           <Image src={`/${props.origin}-line.svg`} layout="fill" />
@@ -97,6 +113,10 @@ export default function Product(props) {
               position: absolute;
               bottom: 0;
               left: 30%;
+              ${theme.mq[0]} {
+                //1050px
+                bottom: -15px;
+              }
             `}
           >
             {props.price ? props.price + ' kr' : ''}
@@ -110,6 +130,11 @@ export default function Product(props) {
               width: 30px;
               height: 30px;
               transition: all 0.2s ease;
+              ${theme.mq[0]} {
+                //1050px
+                width: 20px;
+                height: 20px;
+              }
             `}
           >
             <Image

@@ -1,25 +1,27 @@
-import { css } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import React, { useEffect } from 'react'
 import shuffleItems from '../utils/shuffleItems'
 import Pricerunner from './Pricerunner'
 import Product from './Product'
+import Button from './Button'
 
 export default function Products(props) {
-  const { items } = props
+  const theme = useTheme()
+  const { blocketData, traderaData, shpockData, pricerunnerData } = props.items
 
   // save next page info into session to use it later if more info was needed
   useEffect(() => {
     const nextPage = {
-      page: items.blocketData.next,
-      od: items.shpockData.next,
+      page: blocketData.next,
+      od: shpockData.next,
     }
     sessionStorage.setItem('nextPage', JSON.stringify(nextPage))
   }, [])
 
   const products = shuffleItems([
-    items.blocketData.items,
-    items.traderaData.items,
-    items.shpockData.items,
+    blocketData.items,
+    traderaData.items,
+    shpockData.items,
   ])
   return (
     <div
@@ -29,35 +31,53 @@ export default function Products(props) {
         background-position-x: right;
       `}
     >
-      <div
-        css={css`
-          width: 100%;
-          max-width: 1200px;
-          margin: auto;
-          padding: 0 25px;
-          text-align: center;
-          position: relative;
-        `}
-      >
-        <Pricerunner data={items.pricerunnerData.items} />
+      {!!products.length ? ( //if there are any items to show
         <div
           css={css`
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 25px;
+            text-align: center;
+            position: relative;
+            ${theme.mq[0]} {
+              //1050px
+              font-size: 0.8rem;
+            }
           `}
         >
-          {products.map((p) => (
-            <Product
-              key={p.id}
-              origin={p.origin}
-              description={p.description}
-              price={p.price}
-              img={p.imageUrl}
-              url={p.url}
-            />
-          ))}
+          <Pricerunner data={pricerunnerData.items} />
+          <div
+            css={css`
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+            `}
+          >
+            {products.map((p) => (
+              <Product
+                key={p.id}
+                origin={p.origin}
+                description={p.description}
+                price={p.price}
+                img={p.imageUrl}
+                url={p.url}
+              />
+            ))}
+          </div>
+          <Button>Load more</Button>
         </div>
-      </div>
+      ) : (
+        <div
+          css={css`
+            height: 100vh;
+            margin: 50px;
+            margin-bottom: 0;
+            text-align: center;
+          `}
+        >
+          <h4>{'No results found :('}</h4>
+        </div>
+      )}
     </div>
   )
 }

@@ -14,8 +14,7 @@ export default function Navbar() {
     if (typeof window !== 'undefined') {
       window.onscroll = () => {
         let currentScrollPos = window.pageYOffset
-        let maxScroll = document.body.scrollHeight - window.innerHeight
-        if (currentScrollPos > 5 && currentScrollPos < maxScroll) {
+        if (currentScrollPos > 5) {
           setonScroll({
             boxShadow: 6,
             backgroundColor: theme.colors.primary,
@@ -59,10 +58,19 @@ export default function Navbar() {
       >
         <div
           css={css`
+            position: relative;
             cursor: pointer;
+            width: 90px;
+            height: 25px;
+            transition: all 0.2s ease-out;
+            :hover {
+              width: 95px;
+              height: 30px;
+            }
           `}
+          onClick={() => window.open('/', '_self')}
         >
-          <Image src="/icon.svg" width="90" height="25" />
+          <Image src="/icon.svg" layout="fill" />
         </div>
         <div>
           <Button>Bli medlem</Button>

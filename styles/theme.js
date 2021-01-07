@@ -1,3 +1,5 @@
+const breakpoints = [1050, 900, 768, 576]
+
 export default {
   colors: {
     primary: '#DEE8F1',
@@ -12,7 +14,5 @@ export default {
     s_primary: '#15A957', // shpock colors
     s_secondary: '#F1FFF7',
   },
-  breakpoints: {
-    //TODO: add proper breakpoints
-  },
+  mq: breakpoints.map((bp) => `@media (max-width: ${bp}px)`), // media queries
 }
