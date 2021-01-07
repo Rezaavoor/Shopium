@@ -1,12 +1,13 @@
 import { css } from '@emotion/react'
 import { queryCache, useQuery } from 'react-query'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Context } from '../utils/context'
 import fetchItems from '../utils/fetchItems'
 import tokenGenerator from '../utils/tokenGenerator'
 import Header from '../components/Header'
 import Products from '../components/Products'
 import Searchbar from '../components/Searchbar'
+import Loading from '../components/Loading'
 
 export default function Home() {
   const [searchWord, _] = useContext(Context).searchWord
@@ -29,8 +30,10 @@ export default function Home() {
       <Searchbar />
       {itemsStatus == 'success' && itemsData ? (
         <Products items={itemsData} />
+      ) : itemsStatus != 'error' ? (
+        <Loading />
       ) : (
-        itemsStatus
+        'error'
       )}
     </>
   )

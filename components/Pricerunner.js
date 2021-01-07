@@ -5,7 +5,6 @@ import { Context } from '../utils/context'
 export default function Pricerunner({ data }) {
   const [searchWord, _] = useContext(Context).searchWord
   const theme = useTheme()
-  console.log(data)
   return (
     <div
       css={css`
@@ -23,6 +22,7 @@ export default function Pricerunner({ data }) {
       {data.map((d) => {
         return (
           <div
+            key={d.id}
             css={css`
               display: flex;
               justify-content: space-between;
