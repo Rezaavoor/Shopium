@@ -17,10 +17,10 @@ export default function Button(props) {
         padding: 7px 15px;
         border-radius: 15px;
         border: 0;
+        outline: none;
         transition: all 0.2s ease-out;
         &:hover {
           color: ${theme.colors.darkblue};
-          /* background-color: ${!props.secondary && theme.colors.secondary}; */
           background-color: ${theme.colors.secondary};
         }
       `}
