@@ -60,7 +60,7 @@ export default function Products(props) {
                 grid-template-columns: 1fr 1fr;
               }
               ${theme.mq[3]} {
-                //768px
+                //576px
                 grid-template-columns: 1fr;
               }
             `}

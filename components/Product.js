@@ -66,12 +66,12 @@ export default function Product(props) {
               //576px
               .image-logo {
                 // no change in size => no hover effect on mobile
-                width: 15px;
-                height: 15px;
+                width: 20;
+                height: 20px;
               }
               .image-line {
-                width: 22px;
-                height: 12px;
+                width: 30px;
+                height: 20px;
               }
             }
           }
