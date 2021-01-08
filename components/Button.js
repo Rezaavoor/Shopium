@@ -29,6 +29,7 @@ export default function Button(props) {
           font-size: 0.7rem;
         }
       `}
+      onClick={props.onClick}
     >
       {props.children}
     </button>

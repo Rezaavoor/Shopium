@@ -10,23 +10,26 @@ export default function Navbar() {
     backgroundColor: 'transparent', //${theme.colors.primary}
     height: 40, //30
   })
+  const [showScrollToTop, setShowScrollToTop] = useState(false)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.onscroll = () => {
         let currentScrollPos = window.pageYOffset
-        if (currentScrollPos > 5) {
+        if (currentScrollPos > 5)
           setonScroll({
             boxShadow: 6,
             backgroundColor: theme.colors.primary,
             height: 40,
           })
-        } else {
+        else
           setonScroll({
             boxShadow: 0,
             backgroundColor: 'transparent',
             height: 50,
           })
-        }
+
+        if (currentScrollPos > 500) setShowScrollToTop(true)
+        else setShowScrollToTop(false)
       }
     }
   })
@@ -76,6 +79,29 @@ export default function Navbar() {
           <Button>Bli medlem</Button>
           <Button secondary>Sparade</Button>
           <Button secondary>Logga in</Button>
+        </div>
+        <div
+          css={css`
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            left: 92vw;
+            top: 90vh;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            display: ${showScrollToTop ? 'block' : 'none'};
+            :hover {
+              width: 35px;
+              height: 35px;
+            }
+            ${theme.mq[3]} {
+              //576px
+              left: 85vw;
+            }
+          `}
+          onClick={() => window.scrollTo({ top: 100, behavior: 'smooth' })}
+        >
+          <Image src="/to-top.svg" layout="fill" />
         </div>
       </div>
     </div>
