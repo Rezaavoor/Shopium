@@ -1,9 +1,11 @@
 import { css, useTheme } from '@emotion/react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import { signIn, signOut, useSession } from 'next-auth/client'
 import Button from './Button'
 
 export default function Navbar() {
+  const [session] = useSession()
   const theme = useTheme()
   const [onScroll, setonScroll] = useState({
     boxShadow: 0, //6
@@ -76,9 +78,11 @@ export default function Navbar() {
           <Image src="/icon.svg" layout="fill" />
         </div>
         <div>
-          <Button>Bli medlem</Button>
+          <Button>{session ? session.user.name : 'Bli medlem'}</Button>
           <Button secondary>Sparade</Button>
-          <Button secondary>Logga in</Button>
+          <Button secondary onClick={session ? signOut : signIn}>
+            {session ? 'Logga ut' : 'Logga in'}
+          </Button>
         </div>
         <div
           css={css`
