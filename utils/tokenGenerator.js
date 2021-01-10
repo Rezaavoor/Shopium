@@ -1,6 +1,18 @@
 import axios from 'axios'
 
 export default async function tokenGenerator(key) {
-  const { data } = await axios.get('/api/getBearerToken')
-  return data.token
+  let response = ''
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    // dev
+    const { data } = await axios.get('http://localhost:3001')
+    response = data
+  } else {
+    //prod
+    const { data } = await axios.get(
+      'https://shopiumbearergenerator.vercel.app/'
+    )
+    response = data
+  }
+  console.log(response)
+  return response.token
 }
