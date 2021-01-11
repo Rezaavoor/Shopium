@@ -3,7 +3,6 @@ import axios from 'axios'
 export default async (req, res) => {
   if (req.method == 'POST') {
     const { token, searchWord, page } = req.body
-
     try {
       const allData = await Promise.all([
         fetchTradera(searchWord, page.page),
@@ -82,7 +81,7 @@ const fetchBlocket = async (token, searchWord, page) => {
     url: `https://api.blocket.se/search_bff/v1/content?lim=40&q=${searchWord}&page=${
       page - 1
     }`,
-    headers: { Authorization: token },
+    headers: { Authorization: 'Bearer ' + token },
   })
   const items = res.data.data.map((i) => {
     return {
