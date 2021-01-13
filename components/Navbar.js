@@ -86,11 +86,11 @@ export default function Navbar() {
         </div>
         <div
           css={css`
-            position: absolute;
+            position: fixed;
             width: 30px;
             height: 30px;
             left: 92vw;
-            top: 90vh;
+            bottom: 5vh;
             cursor: pointer;
             transition: all 0.2s ease-out;
             display: ${showScrollToTop ? 'block' : 'none'};
