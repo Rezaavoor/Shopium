@@ -11,6 +11,10 @@ export default function Layout(props) {
       <Head>
         <title>Shopium</title>
         <link rel="icon" href="/Icon.ico" />
+        <meta
+          name="description"
+          content="Shopium, ditt nya favoritställe för att handla begagnat."
+        />
       </Head>
       <div
         css={css`
