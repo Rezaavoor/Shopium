@@ -68,6 +68,7 @@ export default function Products(props) {
             {products.map((p) => (
               <Product
                 key={p.id}
+                id={p.id}
                 origin={p.origin}
                 description={p.description}
                 price={p.price}
