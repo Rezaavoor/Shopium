@@ -13,15 +13,15 @@ export default function Button(props) {
         color: ${props.secondary ? theme.colors.gray : theme.colors.white};
         text-align: center;
         text-decoration: none;
-        cursor: pointer;
+        cursor: ${!props.disabled && 'pointer'};
         padding: 7px 15px;
         border-radius: 15px;
         border: 0;
         outline: none;
         transition: all 0.2s ease-out;
         &:hover {
-          color: ${theme.colors.darkblue};
-          background-color: ${theme.colors.secondary};
+          color: ${!props.disabled && theme.colors.darkblue};
+          background-color: ${!props.disabled && theme.colors.secondary};
         }
         ${theme.mq[3]} {
           //576px
@@ -30,6 +30,7 @@ export default function Button(props) {
         }
       `}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.children}
     </button>

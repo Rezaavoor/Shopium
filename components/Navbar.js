@@ -78,11 +78,15 @@ export default function Navbar() {
           <Image src="/icon.svg" layout="fill" />
         </div>
         <div>
-          <Button>{session ? session.user.name : 'Bli medlem'}</Button>
-          <Button secondary>Sparade</Button>
-          <Button secondary onClick={session ? signOut : signIn}>
-            {session ? 'Logga ut' : 'Logga in'}
+          <Button disabled={!!session} onClick={signIn}>
+            {session ? session.user.name : 'Logga in'}
           </Button>
+          <Button secondary>Sparade</Button>
+          {session && (
+            <Button secondary onClick={signOut}>
+              Logga ut
+            </Button>
+          )}
         </div>
         <div
           css={css`
