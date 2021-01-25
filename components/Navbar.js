@@ -1,5 +1,6 @@
 import { css, useTheme } from '@emotion/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import Button from './Button'
@@ -40,6 +41,7 @@ export default function Navbar() {
     <div
       css={css`
         position: fixed;
+        top: 0;
         width: 100%;
         z-index: 100;
         box-shadow: 0 ${onScroll.boxShadow + 'px'} ${onScroll.boxShadow + 'px'}
@@ -81,12 +83,17 @@ export default function Navbar() {
           <Button disabled={!!session} onClick={signIn}>
             {session ? session.user.name : 'Logga in'}
           </Button>
-          <Button secondary>Sparade</Button>
-          {session && (
-            <Button secondary onClick={signOut}>
-              Logga ut
-            </Button>
-          )}
+          {session &&
+            ((
+              <Button secondary>
+                <Link href="/saved">Sparade</Link>
+              </Button>
+            ),
+            (
+              <Button secondary onClick={signOut}>
+                Logga ut
+              </Button>
+            ))}
         </div>
         <div
           css={css`

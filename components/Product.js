@@ -1,8 +1,8 @@
 import { css, useTheme } from '@emotion/react'
-import axios from 'axios'
 import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import { useState } from 'react'
+import handleItem from '../utils/handleItem'
 
 export default function Product(props) {
   const [session] = useSession()
@@ -24,27 +24,16 @@ export default function Product(props) {
   const [heartColor, setHeartColor] = useState(theme.colors.white)
 
   const toggleHeartColor = () => {
-    heartColor == theme.colors.white
-      ? (setHeartColor(theme.colors.b_primary), saveItem())
-      : setHeartColor(theme.colors.white)
+    heartColor == theme.colors.white ? saveItem() : deleteItem()
   }
 
-  const saveItem = () => {
-    // const res = await axios
-    //   .post('/api/saveItem', {
-    //     credentials: {
-    //       accessToken: session.accessToken,
-    //       userEmail: session.user.email,
-    //     },
-    //     itemInfo: props,
-    //   })
-    //   .catch((e) => {
-    //     if (e.response.status == 401) {
-    //       //token is incorrect
-    //       return { authorize: { status: 'Not authenticated' } }
-    //     }
-    //   })
-    // console.log('savetItem: ', res.data)
+  const saveItem = async () => {
+    const { status } = await handleItem(session.user.email, props, 'save')
+    if (status === 'saved') setHeartColor(theme.colors.b_primary)
+  }
+  const deleteItem = async () => {
+    const { status } = await handleItem(session.user.email, props, 'delete')
+    if (status === 'deleted') setHeartColor(theme.colors.white)
   }
 
   return (
