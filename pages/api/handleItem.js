@@ -6,7 +6,6 @@ export default async (req, res) => {
       const prisma = new PrismaClient()
       const { userEmail, itemInfo, method } = req.body
 
-      console.log('body: ', req.body)
       let isAuthed = false
       if (userEmail) {
         try {
@@ -15,11 +14,9 @@ export default async (req, res) => {
               email: userEmail,
             },
           })
-          console.log('user: ', user)
           if (user && (method === 'save' || method === 'delete')) {
             //authed
             isAuthed = true
-            console.log('authed')
             if (method === 'save') {
               try {
                 const ad = await prisma.savedAd.create({
