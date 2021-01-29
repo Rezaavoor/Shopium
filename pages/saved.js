@@ -116,7 +116,6 @@ export async function getServerSideProps(context) {
     }
   }
   savedItems = JSON.stringify(savedItems)
-  console.log('savedAds: ', savedItems)
   return {
     props: { savedItems },
   }

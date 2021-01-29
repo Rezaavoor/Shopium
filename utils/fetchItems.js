@@ -1,6 +1,12 @@
 import axios from 'axios'
+import { useQuery } from 'react-query'
 
-export default async function fetchItems(key, token, searchWord, page) {
+async function tokenGenerator(key) {
+  const { data } = await axios.get('/api/getBearerToken')
+  return data.token
+}
+
+async function itemsFetcher(key, token, searchWord, page) {
   const res = await axios
     .post('/api/getItems', { token, searchWord, page })
     .catch((e) => {
@@ -11,4 +17,19 @@ export default async function fetchItems(key, token, searchWord, page) {
     })
 
   return res.data
+}
+
+export default function getItems({ searchWord, page }) {
+  const { data: token, status: tokenStatus } = useQuery(
+    'generateToken',
+    tokenGenerator,
+    { staleTime: 900000 } //data is old after 15min
+  )
+
+  const { data: itemsData, status: itemsStatus } = useQuery(
+    ['searchItems', token, searchWord, page],
+    itemsFetcher,
+    { staleTime: 900000, enabled: !!token }
+  )
+  return { itemsData, itemsStatus }
 }
