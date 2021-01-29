@@ -1,10 +1,9 @@
 import axios from 'axios'
 
-export default async function handleItem(userEmail, props, method) {
+export default async function handleItem(itemInfo, method) {
   const res = await axios
     .post('/api/handleItem', {
-      userEmail,
-      itemInfo: props,
+      itemInfo,
       method,
     })
     .catch((e) => {

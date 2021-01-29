@@ -1,17 +1,19 @@
 import { PrismaClient } from '@prisma/client'
+import { getSession } from 'next-auth/client'
 
 export default async (req, res) => {
   if (req.method == 'POST') {
     try {
+      const session = await getSession({ req })
       const prisma = new PrismaClient()
-      const { userEmail, itemInfo, method } = req.body
+      const { itemInfo, method } = req.body
 
       let isAuthed = false
-      if (userEmail) {
+      if (session) {
         try {
           const user = await prisma.user.findUnique({
             where: {
-              email: userEmail,
+              email: session.user.email,
             },
           })
           if (user && (method === 'save' || method === 'delete')) {

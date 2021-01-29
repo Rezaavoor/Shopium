@@ -83,17 +83,16 @@ export default function Navbar() {
           <Button disabled={!!session} onClick={signIn}>
             {session ? session.user.name : 'Logga in'}
           </Button>
-          {session &&
-            ((
-              <Button secondary>
-                <Link href="/saved">Sparade</Link>
-              </Button>
-            ),
-            (
-              <Button secondary onClick={signOut}>
-                Logga ut
-              </Button>
-            ))}
+          {session && (
+            <Button secondary>
+              <Link href="/saved">Sparade</Link>
+            </Button>
+          )}
+          {session && (
+            <Button secondary onClick={signOut}>
+              Logga ut
+            </Button>
+          )}
         </div>
         <div
           css={css`

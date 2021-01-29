@@ -4,35 +4,37 @@ import Image from 'next/image'
 import { useState } from 'react'
 import handleItem from '../utils/handleItem'
 
-export default function Product(props) {
+export default function Product(itemInfo) {
   const [session] = useSession()
   const theme = useTheme()
   const color = {
     primary:
-      props.origin == 'blocket'
+      itemInfo.origin == 'blocket'
         ? theme.colors.b_primary
-        : props.origin == 'tradera'
+        : itemInfo.origin == 'tradera'
         ? theme.colors.t_primary
         : theme.colors.s_primary,
     secondary:
-      props.origin == 'blocket'
+      itemInfo.origin == 'blocket'
         ? theme.colors.b_secondary
-        : props.origin == 'tradera'
+        : itemInfo.origin == 'tradera'
         ? theme.colors.t_secondary
         : theme.colors.s_secondary,
   }
-  const [heartColor, setHeartColor] = useState(theme.colors.white)
+  const [heartColor, setHeartColor] = useState(
+    itemInfo.saved ? theme.colors.b_primary : theme.colors.white
+  )
 
   const toggleHeartColor = () => {
     heartColor == theme.colors.white ? saveItem() : deleteItem()
   }
 
   const saveItem = async () => {
-    const { status } = await handleItem(session.user.email, props, 'save')
+    const { status } = await handleItem(itemInfo, 'save')
     if (status === 'saved') setHeartColor(theme.colors.b_primary)
   }
   const deleteItem = async () => {
-    const { status } = await handleItem(session.user.email, props, 'delete')
+    const { status } = await handleItem(itemInfo, 'delete')
     if (status === 'deleted') setHeartColor(theme.colors.white)
   }
 
@@ -113,7 +115,7 @@ export default function Product(props) {
             }
           `}
         >
-          <Image src={`/${props.origin}-line.svg`} layout="fill" />
+          <Image src={`/${itemInfo.origin}-line.svg`} layout="fill" />
         </div>
         <div
           css={css`
@@ -145,7 +147,7 @@ export default function Product(props) {
               }
             `}
           >
-            {props.description}
+            {itemInfo.description}
           </p>
           <div
             css={css`
@@ -155,7 +157,7 @@ export default function Product(props) {
               color: green;
             `}
           >
-            <h3>{props.price ? props.price + ' kr' : ''}</h3>
+            <h3>{itemInfo.price ? itemInfo.price + ' kr' : ''}</h3>
           </div>
           <div
             className="image-logo"
@@ -174,9 +176,9 @@ export default function Product(props) {
             `}
           >
             <Image
-              src={`/${props.origin}-img.svg`}
+              src={`/${itemInfo.origin}-img.svg`}
               layout="fill"
-              alt={props.origin}
+              alt={itemInfo.origin}
             />
           </div>
         </div>
@@ -193,12 +195,12 @@ export default function Product(props) {
               border-radius: 5%;
             }
           `}
-          onClick={() => window.open(props.url)}
+          onClick={() => window.open(itemInfo.url)}
         >
           <Image
-            src={props.img ? props.img : '/no-image.svg'}
+            src={itemInfo.img ? itemInfo.img : '/no-image.svg'}
             layout="fill"
-            alt={props.origin}
+            alt={itemInfo.origin}
           />
         </div>
         {session && (
