@@ -51,7 +51,7 @@ export default function Saved({ savedItems }) {
               text-align: left;
             `}
           >
-            <h3>Dina sparade anonser:</h3>
+            <h3>Dina sparade annonser:</h3>
           </div>
           <div
             css={css`
@@ -90,7 +90,7 @@ export default function Saved({ savedItems }) {
             text-align: center;
           `}
         >
-          <h4>{'Du har inga sparade anonser än'}</h4>
+          <h4>{'Du har inga sparade annonser än'}</h4>
         </div>
       )}
     </div>
