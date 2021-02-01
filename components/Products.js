@@ -1,21 +1,23 @@
 import { css, useTheme } from '@emotion/react'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import shuffleItems from '../utils/shuffleItems'
 import Pricerunner from './Pricerunner'
 import Product from './Product'
 import Button from './Button'
+import { Context } from '../utils/context'
 
 export default function Products(props) {
   const theme = useTheme()
   const { blocketData, traderaData, shpockData, pricerunnerData } = props.items
+  const [_, setPage] = useContext(Context).page
+  const [nextPage, setNextPage] = useState('')
 
-  // save next page info into session to use it later if more info was needed
   useEffect(() => {
-    const nextPage = {
+    const next = {
       page: blocketData.next,
       od: shpockData.next,
     }
-    sessionStorage.setItem('nextPage', JSON.stringify(nextPage))
+    setNextPage(next)
   }, [])
 
   const products = shuffleItems([
@@ -77,7 +79,11 @@ export default function Products(props) {
               />
             ))}
           </div>
-          <Button>Load more</Button>
+          <Button onClick={()=>{
+            window.scrollTo({ top: 100, behavior: 'smooth' })
+            setTimeout(()=>setPage(nextPage), 700);
+            
+          }}>Load more</Button>
         </div>
       ) : (
         <div
