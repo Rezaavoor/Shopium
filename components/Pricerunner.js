@@ -10,6 +10,7 @@ export default function Pricerunner({ data }) {
       css={css`
         background-color: ${theme.colors.primary};
         width: 60vw;
+        max-width: 1100px;
         margin: auto;
         position: relative;
         top: -5px;
