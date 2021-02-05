@@ -8,10 +8,12 @@ export const ContextProvider = (props) => {
     page: 1,
     od: '',
   })
+  const [pages, setPages] = useState([{page: 1, od:''}])
 
   const contextData = {
     searchWord: [searchWord, setSearchWord],
     page: [page, setPage],
+    pages: [pages, setPages],
   }
 
   return (

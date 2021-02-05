@@ -9,15 +9,23 @@ import { Context } from '../utils/context'
 export default function Products(props) {
   const theme = useTheme()
   const { blocketData, traderaData, shpockData, pricerunnerData } = props.items
-  const [_, setPage] = useContext(Context).page
-  const [nextPage, setNextPage] = useState('')
+  const [page, setPage] = useContext(Context).page
+  const [pages, setPages] = useContext(Context).pages
+
+  const getIndexOfCurrentPage =()=> {
+    return pages.findIndex(p => p.page === page.page)
+  }
 
   useEffect(() => {
     const next = {
       page: blocketData.next,
       od: shpockData.next,
     }
-    setNextPage(next)
+
+    //if next page is not in the pages list...
+    if(!pages.find(p => p.page === next.page)){
+      setPages([...pages, next])
+    }
   }, [])
 
   const products = shuffleItems([
@@ -79,11 +87,33 @@ export default function Products(props) {
               />
             ))}
           </div>
-          <Button onClick={()=>{
-            window.scrollTo({ top: 100, behavior: 'smooth' })
-            setTimeout(()=>setPage(nextPage), 700);
-            
-          }}>Load more</Button>
+          <div css={css`
+            position: realtive;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            *{
+              margin: 0 5px;
+              margin-bottom: 15px;
+            }
+          `}>
+            <Button disabled={getIndexOfCurrentPage()===0} onClick={()=>{
+              window.scrollTo({ top: 100, behavior: 'smooth' })
+              setTimeout(()=>setPage(pages[getIndexOfCurrentPage() - 1]), 700);
+            }}>
+              Tidigare
+            </Button>
+            <Button onClick={()=>{
+              window.scrollTo({ top: 100, behavior: 'smooth' })
+            }}>
+              {page.page}
+            </Button>
+            <Button onClick={()=>{
+              window.scrollTo({ top: 100, behavior: 'smooth' })
+              setTimeout(()=>setPage(pages[getIndexOfCurrentPage() + 1]), 700);
+              
+            }}>Nästa</Button>
+          </div>
         </div>
       ) : (
         <div
@@ -94,7 +124,7 @@ export default function Products(props) {
             text-align: center;
           `}
         >
-          <h4>{'No results found :('}</h4>
+          <h4>{'Ingenting hittades :('}</h4>
         </div>
       )}
     </div>
