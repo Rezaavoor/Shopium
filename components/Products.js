@@ -12,10 +12,6 @@ export default function Products(props) {
   const [page, setPage] = useContext(Context).page
   const [pages, setPages] = useContext(Context).pages
 
-  const getIndexOfCurrentPage =()=> {
-    return pages.findIndex(p => p.page === page.page)
-  }
-
   useEffect(() => {
     const next = {
       page: blocketData.next,
@@ -28,11 +24,16 @@ export default function Products(props) {
     }
   }, [])
 
+
+  const getIndexOfCurrentPage =()=> {
+    return pages.findIndex(p => p.page === page.page)
+  }
   const products = shuffleItems([
     blocketData.items,
     traderaData.items,
     shpockData.items,
   ])
+  
   return (
     <div
       css={css`
@@ -98,18 +99,18 @@ export default function Products(props) {
             }
           `}>
             <Button disabled={getIndexOfCurrentPage()===0} onClick={()=>{
-              window.scrollTo({ top: 100, behavior: 'smooth' })
+              window.scrollTo({ top: 500, behavior: 'smooth' })
               setTimeout(()=>setPage(pages[getIndexOfCurrentPage() - 1]), 700);
             }}>
               Tidigare
             </Button>
             <Button onClick={()=>{
-              window.scrollTo({ top: 100, behavior: 'smooth' })
+              window.scrollTo({ top: 500, behavior: 'smooth' })
             }}>
               {page.page}
             </Button>
             <Button onClick={()=>{
-              window.scrollTo({ top: 100, behavior: 'smooth' })
+              window.scrollTo({ top: 500, behavior: 'smooth' })
               setTimeout(()=>setPage(pages[getIndexOfCurrentPage() + 1]), 700);
               
             }}>Nästa</Button>
