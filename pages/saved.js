@@ -70,7 +70,7 @@ export default function Saved({ savedItems }) {
             {items.map((p) => (
               <Product
                 key={p.id}
-                id={p.id}
+                id={p.adId}
                 origin={p.origin}
                 description={p.description}
                 price={p.price}
