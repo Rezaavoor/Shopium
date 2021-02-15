@@ -90,7 +90,7 @@ export default function Saved({ savedItems }) {
             text-align: center;
           `}
         >
-          <h4>{'Du har inga sparade annonser än'}</h4>
+          <h4>{'Du har inga sparade annonser'}</h4>
         </div>
       )}
     </div>
