@@ -34,7 +34,7 @@ export default async (req, res) => {
 const fetchTradera = async (searchWord, page = 1) => {
   searchWord = searchWord.replace(' ', '%20')
   const res = await axios.get(
-    `https://www.tradera.com/search.json?q=${searchWord}&spage=${page}`
+    `https://www.tradera.com/search.json?q=${searchWord}&paging=&spage=${page}`
   )
   const items = res.data.items.slice(0, 40).map((i) => {
     return {
