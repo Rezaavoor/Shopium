@@ -157,7 +157,7 @@ export default function Product(itemInfo) {
               color: green;
             `}
           >
-            <h3>{itemInfo.price ? itemInfo.price + ' kr' : ''}</h3>
+            <h3>{itemInfo.price ? itemInfo.price : ''}</h3>
           </div>
           <div
             className="image-logo"

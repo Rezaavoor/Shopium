@@ -41,7 +41,7 @@ const fetchTradera = async (searchWord, page = 1) => {
       id: i.itemId,
       origin: 'tradera',
       description: i.shortDescription ? i.shortDescription : '',
-      price: i.price ? i.price : '',
+      price: i.price ? i.price+' kr' : '',
       imageUrl: i.imageUrl ? i.imageUrl.replace('medium', 'images') : '',
       url: 'https://www.tradera.com' + i.itemUrl,
     }
@@ -63,7 +63,7 @@ const fetchShpock = async (searchWord, od = '') => {
       id: i.id,
       origin: 'shpock',
       description: i.description ? i.description : '',
-      price: i.price ? i.price : '',
+      price: i.price ? `${i.price} ${i.currency}` : '',
       imageUrl: i.media
         ? `https://webimg.secondhandapp.com/w-i-mgl/${i.media[0].id}`
         : '',
@@ -88,7 +88,7 @@ const fetchBlocket = async (token, searchWord, page) => {
       id: i.ad_id,
       origin: 'blocket',
       description: i.subject ? i.subject : '',
-      price: i.price ? i.price.value : '',
+      price: i.price ? `${i.price.value} ${i.price.suffix}` : '',
       imageUrl: i.images ? i.images[0].url + '?type=original' : '',
       url: i.share_url,
     }
