@@ -22,7 +22,7 @@ export default function Footer() {
       >
         {'2021 '}
         <a href="https://www.reza.social" target="_blank">
-          Reza Hosseini
+          Reza Hosseini 2021
         </a>
       </p>
     </div>
