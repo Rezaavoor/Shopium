@@ -8,10 +8,6 @@ const prisma = new PrismaClient()
 const options = {
   site: process.env.NEXTAUTH_URL,
   providers: [
-    Providers.Email({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-    }),
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
