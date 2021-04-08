@@ -20,8 +20,7 @@ export default function Footer() {
           transform: translateX(-50%);
         `}
       >
-        {'2021 '}
-        <a href="https://www.reza.social" target="_blank">
+        <a href="https://www.rezahosseini.tech" target="_blank">
           Reza Hosseini 2021
         </a>
       </p>
