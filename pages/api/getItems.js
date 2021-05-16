@@ -35,19 +35,19 @@ const fetchTradera = async (searchWord, page = 1) => {
   searchWord = searchWord.replace(' ', '%20')
   const res = await axios.get(
     `https://www.tradera.com/search.json?q=${searchWord}&paging=&spage=${page}`
-  )
-  const items = res.data.items.slice(0, 40).map((i) => {
-    return {
-      id: i.itemId,
-      origin: 'tradera',
-      description: i.shortDescription ? i.shortDescription : '',
-      price: i.price ? i.price+' kr' : '',
-      imageUrl: i.imageUrl ? i.imageUrl.replace('medium', 'images') : '',
-      url: 'https://www.tradera.com' + i.itemUrl,
-    }
-  })
-  const next = page + 1 //current page index + 1
-  return { items, next }
+    )
+    const items = res.data.items.slice(0, 40).map((i) => {
+      return {
+        id: i.itemId,
+        origin: 'tradera',
+        description: i.shortDescription ? i.shortDescription : '',
+        price: i.price ? i.price+' kr' : '',
+        imageUrl: i.imageUrl ? i.imageUrl.replace('medium', 'images') : '',
+        url: 'https://www.tradera.com' + i.itemUrl,
+      }
+    })
+    const next = page + 1 //current page index + 1
+    return { items, next }
 }
 
 const fetchShpock = async (searchWord, od = '') => {
@@ -100,7 +100,7 @@ const fetchBlocket = async (token, searchWord, page) => {
 const fetchPricerunner = async (searchWord) => {
   const searchW = searchWord.replace(' ', '%20')
   const res = await axios.get(
-    `https://www.pricerunner.se/public/search/v2/se?q=${searchW}`
+    `https://www.pricerunner.se/public/search/v3/se?q=${searchW}`
   )
   const items = res.data.products.slice(0, 5).map((i) => {
     return {
@@ -114,5 +114,5 @@ const fetchPricerunner = async (searchWord) => {
       url: 'https://www.pricerunner.se' + i.url,
     }
   })
-  return { items }
+  return { items }   
 }
