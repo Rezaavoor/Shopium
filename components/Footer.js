@@ -20,7 +20,7 @@ export default function Footer() {
           transform: translateX(-50%);
         `}
       >
-        <a href="https://www.rezahosseini.tech" target="_blank">
+        <a href="https://rezaa.vercel.app/" target="_blank">
           Reza Hosseini 2021
         </a>
       </p>
